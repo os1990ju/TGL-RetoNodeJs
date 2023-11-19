@@ -1,5 +1,3 @@
-// productController.js
-
 const ProductService = require('../services/product.services');
 const productService = new ProductService();
 
@@ -20,7 +18,6 @@ const getById = async (req, res, next)=>{
       product
     })
   }catch(error){
-    //ejecuta middleware de tipo error
     next(error)
   }
 
