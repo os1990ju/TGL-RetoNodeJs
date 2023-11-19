@@ -19,7 +19,7 @@ class ProductService {
     }
   }
 
-  async findAll(body){
+  async findAll(){
 
     return new Promise((resolve, reject)=>{
       setTimeout(()=>{

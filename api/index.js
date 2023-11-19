@@ -2,21 +2,18 @@ const express = require('express');
 var cors = require('cors')
 const routerApi = require('./routes');
 //middlewares
-const {logError, handlerError, boomHandlerError} = require('./middleware.error')
+const {logError, handlerError, boomHandlerError} = require('./middlewares/middleware.error')
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(express.json())
 
-const whitelist = ['http://localhost:8080', 'https://my-app.com'];
-var corsOptions = {
-  origin: (origin, callback)=>{
-    if(whitelist.includes(origin)){
-      callback(null, true);
-    }else{
-      callback(new Error('no permitido'))
-    }
-  }
-}
+
+const corsOptions = {
+  origin: 'http://mi-frontend.com', // Reemplaza con la URL de tu frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true, // Habilita las credenciales de cookies
+  optionsSuccessStatus: 204, // Establece el código de estado para las solicitudes OPTIONS sin cuerpo (sin preflight)
+};
 app.use(cors(corsOptions));
 routerApi(app);
 //middleware de error
