@@ -28,7 +28,8 @@ class ProductService {
     })
   }
   async findOne(id){
-    const item = this.products.filter(item => item.id === id);
+    const item = this.products.find(item => item.id === id);
+    console.log(item);
     if(!item){
       throw Boom.notFound('product not found');
     }
@@ -45,7 +46,9 @@ class ProductService {
   }
 
   async update(id, changes){
+    console.log(id);
     const index = this.products.findIndex(item => item.id === id);
+    console.log(index);
     if(index === -1){
       throw Boom.notFound('product not found');
     }
